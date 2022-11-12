@@ -3,14 +3,24 @@ var http=require('http');
 var server = http.createServer(function(req,res){
 
     if(req.url='/'){
-        //Exist Syncronus
-        let result = fs.existsSync('ahome.html')
+        //Exist Asyncronus
+        fs.exists('home.html', function(result){
         if(result){
             res.end("true");
         }
         else{
             res.end("false");
         }
+            
+        })
+        //Exist Syncronus
+        // let result = fs.existsSync('ahome.html')
+        // if(result){
+        //     res.end("true");
+        // }
+        // else{
+        //     res.end("false");
+        // }
         //Delete Syncronus
         // let error = fs.unlinkSync('demoNewNewSync.txt')
         // if(error)
